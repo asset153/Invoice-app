@@ -1,9 +1,23 @@
 import React from "react";
 
 const InvoicePanel = () => {
+  const handleClickShowForm = () => {
+    const form = document.querySelector(".form-container");
+
+    form.style.display === "none"
+      ? (form.style.display = "block")
+      : (form.style.display = "none");
+  };
+
   return (
     <main className="invoicePanel--container">
-      <h1>Invoice Panel</h1>
+      <div className="invoicePanel--container__top">
+        <h1>TOP</h1>
+        <button onClick={handleClickShowForm}>New</button>
+      </div>
+      <div className="invoicePanel--container__bottom">
+        <h1>BOTTOM</h1>
+      </div>
     </main>
   );
 };

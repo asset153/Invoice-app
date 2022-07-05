@@ -1,20 +1,45 @@
-@import "../src/styles/mixin";
+@import "../../styles/mixin";
 
 .invoicePanel--container {
-  border: 1px solid black;
   margin: 5rem auto 0 auto;
   width: 330px;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
   @include tablet() {
     width: 670px;
   }
   @include desktop() {
     width: 730px;
-    height: auto;
   }
 
-  > h1 {
-    text-align: center;
-    font-size: 3rem;
+  > .invoicePanel--container__top {
+    display: flex;
+    justify-content: space-between;
+    background-color: darkgoldenrod;
+    height: 4.5rem;
+
+    @include tablet() {
+      height: 6rem;
+    }
+    @include desktop() {
+    }
+
+    > button {
+      background-color: beige;
+      padding: 2rem 4rem;
+    }
+  }
+
+  > .invoicePanel--container__bottom {
+    background-color: palegreen;
+    min-height: 60rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include tablet() {
+    }
+    @include desktop() {
+    }
   }
 }
