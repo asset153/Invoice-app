@@ -1,0 +1,13 @@
+@import "./mixin";
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  @include tablet() {
+    flex-direction: column;
+  }
+  @include desktop() {
+    flex-direction: row;
+  }
+}

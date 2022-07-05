@@ -1,0 +1,20 @@
+@import "../src/styles/mixin";
+
+.invoicePanel--container {
+  border: 1px solid black;
+  margin: 5rem auto 0 auto;
+  width: 330px;
+  height: 100%;
+  @include tablet() {
+    width: 670px;
+  }
+  @include desktop() {
+    width: 730px;
+    height: auto;
+  }
+
+  > h1 {
+    text-align: center;
+    font-size: 3rem;
+  }
+}
