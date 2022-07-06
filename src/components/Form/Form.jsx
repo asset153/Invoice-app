@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import ItemList from "../ItemList/ItemList";
 
 const Form = () => {
   return (
@@ -94,6 +95,8 @@ const Form = () => {
           </div>
         </fieldset>
       </form>
+
+      <ItemList />
     </div>
   );
 };
