@@ -2,8 +2,9 @@ import React from "react";
 import { useEffect, useState, useId } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-
-const SingleItemList = ({ itemID, items }) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+const SingleItemList = (props) => {
   const [valueOfItem, setValueOfItem] = useState({
     itemName: "",
     itemQty: "",
@@ -13,7 +14,7 @@ const SingleItemList = ({ itemID, items }) => {
   const ID = useId();
   const { itemName, itemQty, itemPrice, itemTotal } = valueOfItem;
 
-  const handleChangeInputValue = (e) =>
+  const handleChangeInputValue = (e) => {
     setValueOfItem((prevState) => {
       const { name, value } = e.target;
       return {
@@ -21,6 +22,7 @@ const SingleItemList = ({ itemID, items }) => {
         [name]: value,
       };
     });
+  };
 
   useEffect(() => {
     setValueOfItem((prevState) => {
@@ -33,17 +35,15 @@ const SingleItemList = ({ itemID, items }) => {
 
   const handleClickRemoveItem = (e) => {
     e.preventDefault();
-    console.log("itemID", itemID);
-    console.log("items", items);
-    // const filteredArray = items.filter((item) => {
-    //   return item.key === itemID;
-    // });
-    // console.log("filteredArray", filteredArray);
+    props.dispatch({
+      type: "REMOVE_ITEM",
+      payload: props.itemUniqueID,
+    });
   };
 
   return (
     <div className="itemList-container__form__singleItem">
-      <div>
+      <div className="itemList-container__form__singleItem__container--name">
         <label htmlFor={`${ID}itemName`}>Item Name</label>
         <input
           onChange={handleChangeInputValue}
@@ -53,7 +53,8 @@ const SingleItemList = ({ itemID, items }) => {
           type="text"
         />
       </div>
-      <div>
+
+      <div className="itemList-container__form__singleItem__container--qty">
         <label htmlFor={`${ID}itemQty`}>Qty.</label>
         <input
           onChange={handleChangeInputValue}
@@ -63,7 +64,8 @@ const SingleItemList = ({ itemID, items }) => {
           type="text"
         />
       </div>
-      <div>
+
+      <div className="itemList-container__form__singleItem__container--price">
         <label htmlFor={`${ID}itemPrice`}>Price</label>
         <input
           onChange={handleChangeInputValue}
@@ -73,9 +75,11 @@ const SingleItemList = ({ itemID, items }) => {
           type="text"
         />
       </div>
-      <div>
+
+      <div className="itemList-container__form__singleItem__container--total">
         <label htmlFor={`${ID}itemTotal`}>Total</label>
         <input
+          disabled={true}
           onChange={handleChangeInputValue}
           value={itemTotal}
           name="itemTotal"
@@ -83,20 +87,26 @@ const SingleItemList = ({ itemID, items }) => {
           type="text"
         />
       </div>
-      <button onClick={handleClickRemoveItem}>TRASH</button>
+
+      <FontAwesomeIcon
+        className="itemList-container__form__singleItem__container--icon-trash"
+        onClick={handleClickRemoveItem}
+        icon={faTrash}
+      />
     </div>
   );
 };
 
 SingleItemList.propTypes = {
-  itemID: PropTypes.string,
-  items: PropTypes.array,
+  dispatch: PropTypes.func,
+  itemUniqueID: PropTypes.string,
 };
 
-const mapStateToProps = (state) => {
-  console.log("state", state);
+const mapStateToProps = (state, ownProps) => {
+  console.log(ownProps);
   return {
-    items: state,
+    itemDATA: state.reducerSingleItemList,
+    itemUniqueID: ownProps.itemUniqueID,
   };
 };
 

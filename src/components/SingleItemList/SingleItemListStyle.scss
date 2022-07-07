@@ -1,0 +1,58 @@
+@import "../src/styles/_mixin.scss";
+@import "../src/styles/_placeholders.scss";
+
+div.itemList-container__form__singleItem {
+  background-color: white;
+  display: grid;
+  margin: 2rem 0;
+  grid-template-areas:
+    "name name name name"
+    "qty price total trash";
+
+  @include tablet() {
+    grid-template-areas: "name qty price total trash";
+  }
+
+  > div {
+    display: flex;
+    flex-direction: column;
+
+    > input {
+      @extend %form-inputs;
+    }
+  }
+
+  > div.itemList-container__form__singleItem__container--name {
+    grid-area: name;
+    > input {
+      width: 100%;
+      @include tablet() {
+        width: 220px;
+      }
+    }
+  }
+  > div.itemList-container__form__singleItem__container--qty {
+    grid-area: qty;
+    > input {
+      width: 65px;
+    }
+  }
+  > div.itemList-container__form__singleItem__container--price {
+    grid-area: price;
+    > input {
+      width: 100px;
+    }
+  }
+  > div.itemList-container__form__singleItem__container--total {
+    grid-area: total;
+    > input {
+      width: 25px;
+    }
+  }
+  > .itemList-container__form__singleItem__container--icon-trash {
+    grid-area: trash;
+    height: 1.6rem;
+    display: block;
+    margin: auto;
+  }
+}
