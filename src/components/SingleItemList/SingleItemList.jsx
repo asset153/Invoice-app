@@ -33,10 +33,21 @@ const SingleItemList = (props) => {
     });
   }, [itemQty, itemPrice]);
 
+  useEffect(() => {
+    props.dispatch({
+      type: "CREATE_VALUE_TO_OBJECT",
+      payload: { valueOfItem: valueOfItem, itemUniqueID: props.itemUniqueID },
+    });
+  }, [valueOfItem]);
+
   const handleClickRemoveItem = (e) => {
     e.preventDefault();
     props.dispatch({
       type: "REMOVE_ITEM",
+      payload: props.itemUniqueID,
+    });
+    props.dispatch({
+      type: "REMOVE_SINGLE_OBJECT_WITH_VALUE",
       payload: props.itemUniqueID,
     });
   };
@@ -103,7 +114,6 @@ SingleItemList.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps);
   return {
     itemDATA: state.reducerSingleItemList,
     itemUniqueID: ownProps.itemUniqueID,

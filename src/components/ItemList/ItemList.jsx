@@ -13,6 +13,11 @@ const ItemList = (props) => {
       type: "ADD_ITEM",
       payload: <SingleItemList key={uniqueID} itemUniqueID={uniqueID} />,
     });
+
+    props.dispatch({
+      type: "CREATE_OBJ_FROM_VALUE",
+      payload: uniqueID,
+    });
   };
 
   return (
