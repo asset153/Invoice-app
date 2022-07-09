@@ -5,11 +5,6 @@ import createInvoiceID from "../../utils/createInvoiceID";
 
 const SaveAndSend = (props) => {
   const handleClickSaveAndSend = () => {
-    console.log("save & send");
-    console.log("dataValuesFromBillTo", props.dataValuesFromBillTo);
-    console.log("dataValuesFromBillFrom", props.dataValuesFromBillFrom);
-    console.log("dataValuesSingleItemList", props.dataValuesSingleItemList);
-
     fetch("http://localhost:4001/invoices", {
       method: "POST",
       headers: {

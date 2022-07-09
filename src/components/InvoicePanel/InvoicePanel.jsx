@@ -1,4 +1,5 @@
 import React from "react";
+import InvoicesList from "../InvoicesList/InvoicesList";
 
 const InvoicePanel = () => {
   const handleClickShowForm = () => {
@@ -16,7 +17,7 @@ const InvoicePanel = () => {
         <button onClick={handleClickShowForm}>New</button>
       </div>
       <div className="invoicePanel--container__bottom">
-        <h1>BOTTOM</h1>
+        <InvoicesList />
       </div>
     </main>
   );

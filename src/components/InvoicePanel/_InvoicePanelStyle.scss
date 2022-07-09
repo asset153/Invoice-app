@@ -31,11 +31,8 @@
   }
 
   > .invoicePanel--container__bottom {
-    background-color: palegreen;
+    background-color: beige;
     min-height: 60rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
     @include tablet() {
     }
