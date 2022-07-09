@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import ItemList from "../ItemList/ItemList";
 import BillFrom from "../BillFrom/BillFrom";
 import BillTo from "../BillTo/BillTo";
+import SaveAndSend from "../SaveAndSend/SaveAndSend";
 
 const Form = () => {
   return (
@@ -14,6 +15,7 @@ const Form = () => {
       </form>
 
       <ItemList />
+      <SaveAndSend />
     </div>
   );
 };

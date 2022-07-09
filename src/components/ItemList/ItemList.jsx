@@ -23,7 +23,12 @@ const ItemList = (props) => {
   return (
     <div className="itemList-container">
       <h2>Item List</h2>
-      <button onClick={handleClickAddItem}>+ Add New Item</button>
+      <button
+        className="itemList-container__btnAddNewItem"
+        onClick={handleClickAddItem}
+      >
+        + Add New Item
+      </button>
       <form className="itemList-container__form">
         {props.itemDATA.map((item) => item)}
       </form>
