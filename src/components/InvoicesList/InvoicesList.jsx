@@ -1,26 +1,15 @@
+/* eslint-disable */
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import SingleInvoice from "../SingleInvoice/SingleInvoice";
 
-const InvoicesList = () => {
+const InvoicesList = (props) => {
   const [invoicesData, setInvoicesData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // const getApiData = async () => {
-  //   try {
-  //     const response = await fetch("http://localhost:4001/invoices");
-  //     if (response.ok) {
-  //       setIsLoading(true);
-  //     }
-  //     const data = await response.json();
-  //     setInvoicesData(data);
-  //   } catch (e) {
-  //     setError(e);
-  //   }
-  // };
-
   useEffect(() => {
-    fetch("http://localhost:4001/invoices")
+    fetch("http://localhost:4001/invoices/")
       .then((response) => {
         if (response.ok) {
           setIsLoading(true);
@@ -29,10 +18,7 @@ const InvoicesList = () => {
       })
       .then((data) => setInvoicesData([...data]))
       .catch((error) => setError(error));
-
-    // getApiData();
-  }, []);
-  console.log("invoicesData", invoicesData);
+  }, [props.addDeleteChange]);
 
   if (!isLoading) {
     return (
@@ -60,4 +46,10 @@ const InvoicesList = () => {
   }
 };
 
-export default InvoicesList;
+const mapStateToProps = (state) => {
+  return {
+    addDeleteChange: state.reducerAddDeleteChangeInvoicesList,
+  };
+};
+
+export default connect(mapStateToProps)(InvoicesList);

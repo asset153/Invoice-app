@@ -3,37 +3,37 @@ import { connect } from "react-redux";
 import ItemList from "../ItemList/ItemList";
 import BillFrom from "../BillFrom/BillFrom";
 import BillTo from "../BillTo/BillTo";
-import SaveAndSend from "../SaveAndSend/SaveAndSend";
 import PropTypes from "prop-types";
 
-const Form = (props) => {
+const FormEdit = (props) => {
   return (
     <div
-      className="form-container"
+      className="formEdit-container"
       style={{
-        display: props.toggleDisplay ? "block" : "none",
+        display: props.toggleDisplayEditForm ? "block" : "none",
       }}
     >
-      <h1>New Invoice</h1>
+      <h1>Edit Invoice</h1>
       <form>
         <BillFrom />
         <BillTo />
       </form>
 
       <ItemList />
-      <SaveAndSend />
+      <button>Cancel</button>
+      <button>Save Changes</button>
     </div>
   );
 };
 
-Form.propTypes = {
-  toggleDisplay: PropTypes.bool,
+FormEdit.propTypes = {
+  toggleDisplayEditForm: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => {
   return {
-    toggleDisplay: state.reducerFormControl.isDisplay,
+    toggleDisplayEditForm: state.reducerFormControl.isDisplayEditForm,
   };
 };
 
-export default connect(mapStateToProps)(Form);
+export default connect(mapStateToProps)(FormEdit);

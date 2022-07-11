@@ -5,12 +5,13 @@ import { Provider } from "react-redux";
 import reducers from "./store/reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { logger } from "redux-logger/src";
+import thunkMiddleware from "redux-thunk";
 import App from "./App";
 import "./styles/main.scss";
 
 const store = createStore(
   reducers,
-  composeWithDevTools(applyMiddleware(logger))
+  composeWithDevTools(applyMiddleware(logger, thunkMiddleware))
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(

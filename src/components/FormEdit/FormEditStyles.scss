@@ -1,0 +1,22 @@
+@import "../../styles/mixin";
+@import "../src/styles/_placeholders.scss";
+
+.formEdit-container {
+  overflow-y: scroll;
+  width: 100%;
+  height: calc(100vh - 7rem);
+  top: 7rem;
+  left: 0;
+  position: absolute;
+  background-color: beige;
+  @include tablet() {
+    width: 620px;
+    height: calc(100vh - 8rem);
+    top: 8rem;
+  }
+  @include desktop() {
+    height: 100vh;
+    top: 0;
+    left: 100px;
+  }
+}

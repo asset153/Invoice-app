@@ -10,7 +10,10 @@ const App = () => {
         <LeftBar />
         <Routes>
           <Route path="/" element={<InvoicePanel />} />
-          <Route path=":invoiceId" element={<SingleInvoiceInformation />} />
+          <Route
+            path="/invoices/:invoiceId"
+            element={<SingleInvoiceInformation />}
+          />
         </Routes>
       </BrowserRouter>
     </main>

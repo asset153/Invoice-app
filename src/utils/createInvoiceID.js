@@ -7,7 +7,7 @@ const createInvoiceID = () => {
   const MAX = 9999;
   const pieceNumbers = Math.floor(Math.random() * (MAX - MIN + 1) + MIN);
 
-  return `#${characters.charAt(randomFirstCharacter)}${characters.charAt(
+  return `${characters.charAt(randomFirstCharacter)}${characters.charAt(
     randomSecondCharacter
   )}${pieceNumbers}`;
 };

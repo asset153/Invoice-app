@@ -1,13 +1,18 @@
 import React from "react";
 import InvoicesList from "../InvoicesList/InvoicesList";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-const InvoicePanel = () => {
+const InvoicePanel = (props) => {
   const handleClickShowForm = () => {
-    const form = document.querySelector(".form-container");
-
-    form.style.display === "none"
-      ? (form.style.display = "block")
-      : (form.style.display = "none");
+    // const form = document.querySelector(".form-container");
+    //
+    // form.style.display === "none"
+    //   ? (form.style.display = "block")
+    //   : (form.style.display = "none");
+    props.dispatch({
+      type: "TOGGLE_DISPLAY",
+    });
   };
 
   return (
@@ -23,4 +28,8 @@ const InvoicePanel = () => {
   );
 };
 
-export default InvoicePanel;
+InvoicePanel.propTypes = {
+  dispatch: PropTypes.func,
+};
+
+export default connect()(InvoicePanel);

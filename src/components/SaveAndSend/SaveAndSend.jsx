@@ -1,22 +1,18 @@
+/* eslint-disable */
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import actionSaveAndSend from "../../store/actions/actionSaveAndSend";
 import createInvoiceID from "../../utils/createInvoiceID";
-
 const SaveAndSend = (props) => {
   const handleClickSaveAndSend = () => {
-    fetch("http://localhost:4001/invoices", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: createInvoiceID(),
-        ...props.dataValuesFromBillFrom,
-        ...props.dataValuesFromBillTo,
-        items: props.dataValuesSingleItemList,
-      }),
-    }).catch((error) => console.error(error));
+    const ID = createInvoiceID();
+    props.actionSaveAndSend(
+      props.dataValuesFromBillFrom,
+      props.dataValuesFromBillTo,
+      props.dataValuesSingleItemList,
+      ID
+    );
   };
 
   return (
@@ -50,4 +46,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(SaveAndSend);
+const mapDispatchToProps = {
+  actionSaveAndSend,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SaveAndSend);
