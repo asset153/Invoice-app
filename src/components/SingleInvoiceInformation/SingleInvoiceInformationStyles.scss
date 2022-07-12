@@ -1,0 +1,261 @@
+@import "../src/styles/_mixin.scss";
+@import "../src/styles/_placeholders.scss";
+@import "../src/styles/_variables.scss";
+
+div.singleInvInfo-container {
+  background-color: #f8f8fb;
+  margin: 0 2rem;
+  @include tablet() {
+    width: 690px;
+    margin: 0 auto;
+  }
+
+  @include desktop() {
+    margin: auto auto;
+    min-width: 730px;
+  }
+
+  > div.singleInvInfo-container__go-back {
+    background-color: darkgrey;
+    padding: 2rem 0;
+  }
+
+  > div.singleInvInfo-container__statusAndButtons {
+    background-color: beige;
+    @include tablet() {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 2rem;
+      margin-bottom: 2rem;
+    }
+
+    > div.singleInvInfo-container__statusAndButtons__status {
+      font-size: 1.2rem;
+      background-color: whitesmoke;
+      height: 9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      @include tablet() {
+        justify-content: center;
+        padding: 0;
+      }
+
+      > p {
+        background-color: red;
+        @include tablet() {
+          margin-right: 1rem;
+        }
+      }
+
+      > span {
+        @extend %status-span;
+        background-color: yellowgreen;
+      }
+    }
+
+    > div.singleInvInfo-container__statusAndButtons__buttons {
+      background-color: wheat;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 9rem;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      @include tablet() {
+        position: static;
+      }
+
+      > button {
+        border: none;
+        border-radius: 2rem;
+        font-weight: bold;
+        font-family: $font-spartan;
+
+        &.singleInvInfo-container__statusAndButtons__buttons--delete {
+          padding: 1.7rem 2rem;
+          background-color: #ec5757;
+          color: #fff;
+          @include tablet() {
+            margin: 0 1rem;
+          }
+        }
+
+        &.singleInvInfo-container__statusAndButtons__buttons--edit {
+          padding: 1.7rem 2rem;
+          background-color: #f9fafe;
+          color: #7e88c3;
+        }
+
+        &.singleInvInfo-container__statusAndButtons__buttons--marksAsPaid {
+          padding: 1.7rem 4.5rem;
+          background-color: #7c5dfa;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  div.singleInvInfo-container__information {
+    background-color: orange;
+    display: grid;
+    grid-template-areas:
+      "id ."
+      "billFrom ."
+      "date billTo"
+      "payment billTo"
+      "email email"
+      "items items";
+    @include tablet() {
+      grid-template-areas:
+        "id . billFrom"
+        "date billTo email"
+        "payment billTo email"
+        "items items items";
+    }
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      font-size: 1.2rem;
+
+      &:not(div:last-child) {
+        padding: 2rem;
+      }
+    }
+
+    > div.singleInvInfo-container__information--id-description {
+      grid-area: id;
+      background-color: yellow;
+
+      > span.id {
+        font-weight: bold;
+      }
+    }
+
+    > div.singleInvInfo-container__information--billFrom {
+      grid-area: billFrom;
+      background-color: yellowgreen;
+      @include tablet() {
+        align-items: flex-end;
+      }
+    }
+
+    > div.singleInvInfo-container__information--date {
+      grid-area: date;
+      background-color: mediumpurple;
+
+      > span.date {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+
+    > div.singleInvInfo-container__information--billTo {
+      grid-area: billTo;
+      background-color: gold;
+
+      > span.billTo-name {
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+    }
+
+    > div.singleInvInfo-container__information--payment {
+      grid-area: payment;
+      background-color: palevioletred;
+
+      > span.payment-date {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+
+    > div.singleInvInfo-container__information--email {
+      grid-area: email;
+      background-color: rosybrown;
+
+      > span.email {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+
+    > div.singleInvInfo-container__information__items {
+      font-size: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      grid-area: items;
+      background-color: green;
+      border-radius: 0.75rem;
+      margin: 2rem;
+      padding-top: 3rem;
+
+      > div.singleInvInfo-container__information__items--titleForTabletDesign {
+        display: none;
+        @include tablet() {
+          display: flex;
+          justify-content: space-between;
+          padding: 0 2rem;
+        }
+      }
+
+      > div.singleInvInfo-container__information__items--item {
+        background-color: indianred;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        margin-bottom: 1rem;
+
+        > div.singleInvInfo-container__information__items--item__name-qty {
+          display: flex;
+          flex-direction: column;
+          @include tablet() {
+            flex-direction: row;
+            justify-content: space-between;
+            width: 70%;
+            background-color: red;
+          }
+
+          > div {
+            @include tablet() {
+              background-color: blue;
+              display: flex;
+              justify-content: space-between;
+              width: 50%;
+            }
+          }
+
+          > span {
+            &:nth-child(1) {
+              font-weight: bold;
+            }
+          }
+        }
+        > span {
+          font-weight: bold;
+        }
+      }
+
+      > div.singleInvInfo-container__information__items--grandTotal {
+        border-radius: 0 0 0.75rem 0.75rem;
+        background-color: rebeccapurple;
+        min-height: 8rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+
+        > span.grandTotal--sum {
+          font-size: 2rem;
+          font-weight: bold;
+          color: #fff;
+        }
+      }
+    }
+  }
+}

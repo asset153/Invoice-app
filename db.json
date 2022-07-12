@@ -1,3 +1,22 @@
 {
-  "invoices": []
+  "invoices": [
+    {
+      "id": "RR5184",
+      "billFromStreetAddress": "",
+      "billFromCity": "",
+      "billFromPostCode": "",
+      "billFromCountry": "",
+      "billToClientsName": "",
+      "billToClientsEmail": "",
+      "billToStreetAddress": "",
+      "billToCity": "",
+      "billToPostCode": "",
+      "billToCountry": "",
+      "billToDate": "",
+      "billToPaymentTerms": "",
+      "billToProjectDescription": "",
+      "items": [],
+      "status": "Pending"
+    }
+  ]
 }
