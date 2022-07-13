@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import ItemList from "../ItemList/ItemList";
 import BillFrom from "../BillFrom/BillFrom";
 import BillTo from "../BillTo/BillTo";
 import SaveAndSend from "../SaveAndSend/SaveAndSend";
-import PropTypes from "prop-types";
 
 const Form = (props) => {
   return (

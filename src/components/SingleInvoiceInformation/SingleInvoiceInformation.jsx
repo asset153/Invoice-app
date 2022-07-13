@@ -4,20 +4,24 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
 import actionDeleteInvoice from "../../store/actions/actionDeleteInvoice";
 import actionToggleDisplay from "../../store/actions/actionToggleDisplay";
+import actionMarksAsPaid from "../../store/actions/actionMarksAsPaid";
 import FormEdit from "../FormEdit/FormEdit";
 const SingleInvoiceInformation = (props) => {
+  // dane przekazane przez pojedynczy link
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const deleteInvoice = () => {
+    // przejdź do strony głównej
     navigate("/");
+    // usuń fakturę
     props.actionDeleteInvoice(location.state.id);
   };
 
   const editInvoice = () => {
-    console.log("location", location);
     props.actionToggleDisplay();
+    // zmiana wartości z formularza bill from
     dispatch({
       type: "CHANGE_VALUES_BILL_FROM_EDIT",
       payload: {
@@ -27,11 +31,36 @@ const SingleInvoiceInformation = (props) => {
         billFromCountry: location.state.billFromCountry,
       },
     });
+    // zmiana wartości z formularza bill to
+    dispatch({
+      type: "CHANGE_VALUES_BILL_TO_EDIT",
+      payload: {
+        billToClientsName: location.state.billToClientsName,
+        billToClientsEmail: location.state.billToClientsEmail,
+        billToStreetAddress: location.state.billToStreetAddress,
+        billToCity: location.state.billToCity,
+        billToPostCode: location.state.billToPostCode,
+        billToCountry: location.state.billToCountry,
+        billToDate: location.state.billToDate,
+        billToPaymentTerms: location.state.billToPaymentTerms,
+        billToProjectDescription: location.state.billToProjectDescription,
+      },
+    });
+  };
+
+  // zmiana statusu formularza
+  const marksAsPaid = () => {
+    console.log(location.state);
+    location.state.status === "Pending" &&
+      props.actionMarksAsPaid(location.state, location.state.id);
   };
 
   return (
     <>
-      <FormEdit />
+      <FormEdit
+        singleInvoiceID={location.state.id}
+        items={location.state.items}
+      />
       <div className="singleInvInfo-container">
         <div className="singleInvInfo-container__go-back">
           <button>Go back</button>
@@ -56,7 +85,10 @@ const SingleInvoiceInformation = (props) => {
             >
               DELETE
             </button>
-            <button className="singleInvInfo-container__statusAndButtons__buttons--marksAsPaid">
+            <button
+              onClick={marksAsPaid}
+              className="singleInvInfo-container__statusAndButtons__buttons--marksAsPaid"
+            >
               MARKS AS PAID
             </button>
           </div>
@@ -64,8 +96,10 @@ const SingleInvoiceInformation = (props) => {
 
         <div className="singleInvInfo-container__information">
           <div className="singleInvInfo-container__information--id-description">
-            <span className="id">#XM9141</span>
-            <span className="description">Graphic Design</span>
+            <span className="id">{location.state.id}</span>
+            <span className="description">
+              {location.state.billToProjectDescription}
+            </span>
           </div>
           <div className="singleInvInfo-container__information--billFrom">
             <span className="billFrom-address">19 Union Terrace</span>
@@ -137,6 +171,7 @@ const SingleInvoiceInformation = (props) => {
 const mapDispatchToProps = {
   actionDeleteInvoice,
   actionToggleDisplay,
+  actionMarksAsPaid,
 };
 
 export default connect(null, mapDispatchToProps)(SingleInvoiceInformation);

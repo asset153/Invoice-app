@@ -8,6 +8,10 @@ const reducerAddDeleteChangeInvoicesList = (state = initialState, action) => {
       return { ...action.payload };
     case "DELETE_INVOICE":
       return { ...action.payload };
+    case "EDIT_INVOICE":
+      return { ...action.payload };
+    case "MARKS_AS_PAID_INVOICE":
+      return { ...action.payload };
     default:
       return state;
   }
