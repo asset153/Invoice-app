@@ -3,7 +3,7 @@
 @import "../src/styles/_variables.scss";
 
 div.singleInvInfo-container {
-  background-color: #f8f8fb;
+  background-color: $background-main;
   margin: 0 2rem;
   @include tablet() {
     width: 690px;

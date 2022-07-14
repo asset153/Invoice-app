@@ -11,7 +11,7 @@ const Form = (props) => {
     <div
       className="form-container"
       style={{
-        display: props.toggleDisplay ? "block" : "none",
+        display: props.toggleDisplay ? "flex" : "none",
       }}
     >
       <h1>New Invoice</h1>

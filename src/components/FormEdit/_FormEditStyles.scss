@@ -2,6 +2,7 @@
 @import "../src/styles/_placeholders.scss";
 
 .formEdit-container {
+  z-index: 999;
   overflow-y: scroll;
   width: 100%;
   height: calc(100vh - 7rem);

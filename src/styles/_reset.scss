@@ -9,4 +9,25 @@
 html {
   font-size: 10px;
   font-family: $font-spartan;
+  background-color: $background-main;
+
+  a:link {
+    text-decoration: none;
+    color: black;
+  }
+
+  a:visited {
+    text-decoration: none;
+    color: black;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: black;
+  }
+
+  a:active {
+    text-decoration: none;
+    color: black;
+  }
 }

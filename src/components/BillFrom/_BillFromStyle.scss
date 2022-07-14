@@ -2,12 +2,14 @@
 @import "../src/styles/_placeholders.scss";
 
 fieldset.fieldset--billFrom {
+  //background-color: burlywood;
   border: none;
   display: grid;
   grid-template-areas:
     "address address address"
     "city . postcode"
     "country country country";
+  //margin-bottom: 2.5rem;
 
   @include tablet() {
     grid-template-areas:
@@ -16,7 +18,7 @@ fieldset.fieldset--billFrom {
   }
 
   > div {
-    margin: 0 1rem;
+    margin: 0.5rem 1rem;
     &:nth-of-type(1) {
       grid-area: address;
     }

@@ -4,8 +4,8 @@ import Form from "../Form/Form";
 const LeftBar = () => {
   return (
     <aside className="leftBar-container">
+      <div className="leftBar-container__images"></div>
       <Form />
-      <h1>LEFT BAR</h1>
     </aside>
   );
 };

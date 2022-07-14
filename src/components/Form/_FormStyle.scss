@@ -2,21 +2,30 @@
 @import "../src/styles/_placeholders.scss";
 
 .form-container {
-  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
-  height: calc(100vh - 7rem);
+  min-height: calc(100vh - 7rem);
+  height: auto;
   top: 7rem;
   left: 0;
   position: absolute;
-  background-color: beige;
+  background-color: #fff;
+  z-index: 999;
   @include tablet() {
     width: 620px;
     height: calc(100vh - 8rem);
     top: 8rem;
   }
   @include desktop() {
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     top: 0;
     left: 100px;
+  }
+
+  @media screen and (max-height: 768px) {
+    overflow-y: scroll;
   }
 }

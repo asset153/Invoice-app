@@ -1,5 +1,5 @@
 @import "../../styles/mixin";
-
+@import "../../styles/variables";
 .invoicePanel--container {
   margin: 5rem auto 0 auto;
   width: 330px;
@@ -15,8 +15,10 @@
   > .invoicePanel--container__top {
     display: flex;
     justify-content: space-between;
-    background-color: darkgoldenrod;
+    align-items: center;
+    //background-color: darkgoldenrod;
     height: 4.5rem;
+    font-size: 1.2rem;
 
     @include tablet() {
       height: 6rem;
@@ -24,15 +26,95 @@
     @include desktop() {
     }
 
+    > div.invoicePanel--container__top__title {
+      flex-grow: 4;
+      @include tablet() {
+        flex-grow: 6;
+      }
+    }
+
+    > div.invoicePanel--container__top__filter {
+      flex-grow: 1;
+      position: relative;
+      @include tablet() {
+        flex-grow: 1;
+      }
+
+      > button.invoicePanel--container__top__filter__btn {
+        background: transparent;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 0.5rem;
+        font-family: $font-spartan;
+      }
+
+      > div.invoicePanel--container__top__cloud {
+        display: none;
+        position: absolute;
+        top: calc(100% + 0.75rem);
+        left: -100%;
+        border-radius: 1rem;
+        padding: 2rem 6rem 2rem 2rem;
+        background-color: #fff;
+
+        @include tablet() {
+          left: -50%;
+        }
+
+        > div {
+          display: flex;
+          align-items: center;
+          padding: 0.5rem 0;
+
+          > input {
+            margin-right: 1rem;
+            appearance: none;
+            width: 1.6rem;
+            height: 1.6rem;
+            border-radius: 0.25rem;
+            background-color: $background-buttons-lightViolet;
+
+            &:hover {
+              border: 1px solid $background-buttons-violet;
+            }
+
+            &:checked {
+              background-position: center;
+              background-repeat: no-repeat;
+              background-color: $background-buttons-violet;
+              background-image: url("../src/assets/icon-check.svg");
+            }
+          }
+
+          > label {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
     > button {
-      background-color: beige;
-      padding: 2rem 4rem;
+      background-color: $background-buttons-violet;
+      border: none;
+      border-radius: 3rem;
+      color: #fff;
+      padding: 1rem 3rem;
+      font-family: $font-spartan;
+
+      @include tablet() {
+        padding: 1rem 5rem;
+      }
+      @include desktop() {
+      }
     }
   }
 
   > .invoicePanel--container__bottom {
-    background-color: beige;
+    //background-color: beige;
     min-height: 60rem;
+    margin-top: 5rem;
 
     @include tablet() {
     }

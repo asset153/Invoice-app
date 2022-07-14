@@ -1,0 +1,90 @@
+@import "../src/styles/variables";
+@import "../src/styles/mixin";
+.singleInvoice--container {
+  display: grid;
+  background-color: #fff;
+  min-height: 13.5rem;
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  font-size: 1.2rem;
+  cursor: default;
+  grid-template-areas:
+    "id name"
+    "dateAndSum status";
+
+  @include tablet() {
+    min-height: 7rem;
+    grid-template-areas: "id dateAndSum name status";
+  }
+  @include desktop() {
+  }
+
+  > span.spanType--id {
+    grid-area: id;
+    //background-color: red;
+    @include tablet() {
+      grid-area: id;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    > span {
+      color: $color-text-light-violet;
+    }
+  }
+
+  > span.spanType--name {
+    grid-area: name;
+    //background-color: green;
+    text-align: end;
+    color: $color-text-light-violet;
+    @include tablet() {
+      grid-area: name;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-area: dateAndSum;
+    row-gap: 0.75rem;
+
+    @include tablet() {
+      flex-direction: row;
+      align-items: center;
+      column-gap: 4rem;
+    }
+
+    > span.spanType--date {
+      //background-color: blue;
+      color: $color-text-light-violet;
+    }
+
+    > span.spanType--totalSum {
+      //background-color: rebeccapurple;
+      font-size: 1.6rem;
+    }
+  }
+
+  > span.spanType--status {
+    grid-area: status;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    background-color: greenyellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #33d69f;
+    width: 10.5rem;
+    height: 4rem;
+    @include tablet() {
+    }
+  }
+}

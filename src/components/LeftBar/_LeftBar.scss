@@ -1,22 +1,45 @@
 @import "../../styles/mixin";
+@import "../../styles/variables";
 
 .leftBar-container {
   position: relative;
   min-width: 330px;
   width: 100%;
   height: 7rem;
-  background-color: mediumpurple;
+  background-color: $background-left-bar;
   @include tablet() {
     height: 8rem;
   }
   @include desktop() {
     min-width: auto;
     width: 10rem;
-    height: 100vh;
+    height: auto;
+    border-radius: 0 3rem 0 0;
   }
 
-  > h1 {
-    text-align: center;
-    font-size: 3rem;
+  > div.leftBar-container__images {
+    @include desktop() {
+      background-color: $background-buttons-violet;
+      width: 100%;
+      height: 10rem;
+      border-radius: 0 3rem 3rem 0;
+
+      &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 5rem;
+        background-image: url("../../assets/logo.svg");
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 5rem;
+        background-color: #9277ff;
+        border-radius: 3rem 0 3rem 0;
+      }
+    }
   }
 }
