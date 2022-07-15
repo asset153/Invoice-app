@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const initialState = [];
 
 const reducerSingleItemListValue = (state = initialState, action) => {
@@ -13,6 +15,10 @@ const reducerSingleItemListValue = (state = initialState, action) => {
           itemTotal: "",
         },
       ];
+    case "CREATE_OBJ_FROM_VALUE_EDIT":
+      return [...state, ...action.payload];
+    case "CREATE_OBJ_FROM_VALUE_CLEAR":
+      return (state = []);
     case "CREATE_VALUE_TO_OBJECT":
       return state.map((item) => {
         if (item.itemID === action.payload.itemUniqueID) {

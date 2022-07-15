@@ -4,6 +4,7 @@ import { connect, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import actionSaveAndSend from "../../store/actions/actionSaveAndSend";
 import createInvoiceID from "../../utils/createInvoiceID";
+import actionToggleDisplay from "../../store/actions/actionToggleDisplay";
 const SaveAndSend = (props) => {
   const dispatch = useDispatch();
 
@@ -15,6 +16,18 @@ const SaveAndSend = (props) => {
       props.dataValuesSingleItemList,
       ID
     );
+  };
+
+  const handleDisplayForm = () => {
+    dispatch({
+      type: "TOGGLE_DISPLAY",
+    });
+    dispatch({
+      type: "CREATE_OBJ_FROM_VALUE_CLEAR",
+    });
+    dispatch({
+      type: "ADD_ITEM_CLEAR",
+    });
   };
 
   const TEST = () => {
@@ -32,7 +45,12 @@ const SaveAndSend = (props) => {
       <button onClick={TEST} className="saveAndSend-container__btn--TEST">
         TEST
       </button>
-      <button className="saveAndSend-container__btn--discard">Discard</button>
+      <button
+        onClick={handleDisplayForm}
+        className="saveAndSend-container__btn--discard"
+      >
+        Discard
+      </button>
       <button className="saveAndSend-container__btn--saveAsDraft">
         Save as Draft
       </button>
@@ -63,6 +81,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   actionSaveAndSend,
+  actionToggleDisplay,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SaveAndSend);

@@ -1,23 +1,37 @@
 /* eslint-disable */
 
 import React, { useState, useRef } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import ItemList from "../ItemList/ItemList";
 import BillFrom from "../BillFrom/BillFrom";
 import BillTo from "../BillTo/BillTo";
 import actionEditInvoice from "../../store/actions/actionEditInvoice";
+import actionToggleDisplay from "../../store/actions/actionToggleDisplay";
 
 const FormEdit = (props) => {
+  const dispatch = useDispatch();
+
   // przycisk edycji formularza, metoda PUT
   const saveChanges = () => {
-    console.log(props.items);
+    console.log(props.dataValuesSingleItemList);
     props.actionEditInvoice(
       props.dataValuesFromBillFrom,
       props.dataValuesFromBillTo,
-      props.items,
+      props.dataValuesSingleItemList,
       props.singleInvoiceID
     );
+  };
+
+  // funkcja do zmiany display edit form
+  const handleDisplayEditForm = () => {
+    props.actionToggleDisplay();
+    dispatch({
+      type: "CREATE_OBJ_FROM_VALUE_CLEAR",
+    });
+    dispatch({
+      type: "ADD_ITEM_CLEAR",
+    });
   };
 
   return (
@@ -33,19 +47,8 @@ const FormEdit = (props) => {
         <BillFrom />
         <BillTo />
       </form>
-
-      {/*{props.items?.map((item) => {*/}
-      {/*  return (*/}
-      {/*    <div*/}
-      {/*      key={item.itemID}*/}
-      {/*      className="itemList-container__form__singleItem__container--name"*/}
-      {/*    >*/}
-      {/*      <label>Item Name</label>*/}
-      {/*      <input name="itemName" type="text" defaultValue={item.itemName} />*/}
-      {/*    </div>*/}
-      {/*  );*/}
-      {/*})}*/}
-      <button>Cancel</button>
+      <ItemList />
+      <button onClick={handleDisplayEditForm}>Cancel</button>
       <button onClick={saveChanges}>Save Changes</button>
     </div>
   );
@@ -66,6 +69,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   actionEditInvoice,
+  actionToggleDisplay,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormEdit);

@@ -4,14 +4,14 @@ import { applyMiddleware, legacy_createStore as createStore } from "redux";
 import { Provider } from "react-redux";
 import reducers from "./store/reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { logger } from "redux-logger/src";
+// import { logger } from "redux-logger/src";
 import thunkMiddleware from "redux-thunk";
 import App from "./App";
 import "./styles/main.scss";
 
 const store = createStore(
   reducers,
-  composeWithDevTools(applyMiddleware(logger, thunkMiddleware))
+  composeWithDevTools(applyMiddleware(thunkMiddleware))
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -21,3 +21,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </Provider>
   </React.StrictMode>
 );
+
+// logger,

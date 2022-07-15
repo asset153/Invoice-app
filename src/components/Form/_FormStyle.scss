@@ -15,7 +15,7 @@
   z-index: 999;
   @include tablet() {
     width: 620px;
-    height: calc(100vh - 8rem);
+    min-height: calc(100vh - 8rem);
     top: 8rem;
   }
   @include desktop() {

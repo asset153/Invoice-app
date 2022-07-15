@@ -6,6 +6,7 @@ import actionDeleteInvoice from "../../store/actions/actionDeleteInvoice";
 import actionToggleDisplay from "../../store/actions/actionToggleDisplay";
 import actionMarksAsPaid from "../../store/actions/actionMarksAsPaid";
 import FormEdit from "../FormEdit/FormEdit";
+import SingleItemList from "../SingleItemList/SingleItemList";
 const SingleInvoiceInformation = (props) => {
   // dane przekazane przez pojedynczy link
   const location = useLocation();
@@ -46,11 +47,26 @@ const SingleInvoiceInformation = (props) => {
         billToProjectDescription: location.state.billToProjectDescription,
       },
     });
+
+    dispatch({
+      type: "CREATE_VALUE_TO_OBJECT_EDIT",
+    });
+
+    dispatch({
+      type: "CREATE_OBJ_FROM_VALUE_EDIT",
+      payload: location.state.items,
+    });
+
+    dispatch({
+      type: "ADD_ITEM_EDIT",
+      payload: location.state.items.map((item) => (
+        <SingleItemList key={item.itemID} itemUniqueID={item.itemID} />
+      )),
+    });
   };
 
   // zmiana statusu formularza
   const marksAsPaid = () => {
-    console.log(location.state);
     location.state.status === "Pending" &&
       props.actionMarksAsPaid(location.state, location.state.id);
   };
@@ -173,5 +189,11 @@ const mapDispatchToProps = {
   actionToggleDisplay,
   actionMarksAsPaid,
 };
+
+// const mapStateToProps = (state) => {
+//   return {
+//     itemsDATA: state.reducerSingleItemList,
+//   };
+// };
 
 export default connect(null, mapDispatchToProps)(SingleInvoiceInformation);
