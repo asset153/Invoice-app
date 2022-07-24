@@ -1,5 +1,5 @@
 /* eslint-disable */
-const actionSaveAndSend = (d1, d2, d3, ID) => {
+const actionSaveAndSend = (d1, d2, d3, ID, status) => {
   return async (dispatch) => {
     try {
       await fetch("http://localhost:4001/invoices/", {
@@ -12,7 +12,7 @@ const actionSaveAndSend = (d1, d2, d3, ID) => {
           ...d1,
           ...d2,
           items: d3,
-          status: "Pending",
+          status: status ? "Draft" : "Pending",
         }),
       });
       dispatch({

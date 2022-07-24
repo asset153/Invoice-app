@@ -1,3 +1,5 @@
+@import "../src/styles/_placeholders.scss";
+
 div.saveAndSend-container {
   padding: 4rem 1rem;
   display: flex;
@@ -7,6 +9,20 @@ div.saveAndSend-container {
   }
 
   button.saveAndSend-container__btn--saveAsDraft {
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    background-color: rgba(55, 59, 83, 25%);
+    color: #888eb0;
+    font-weight: bold;
+
+    &.checked {
+      background-color: #373b53;
+    }
+
+    &:hover {
+      background-color: #373b53;
+    }
   }
 
   button.saveAndSend-container__btn--saveAndSend {

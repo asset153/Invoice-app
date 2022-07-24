@@ -13,6 +13,11 @@ const SingleInvoiceInformation = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const handleClickGoBack = () => {
+    // przejdź do strony głównej
+    navigate("/");
+  };
+
   const deleteInvoice = () => {
     // przejdź do strony głównej
     navigate("/");
@@ -67,9 +72,20 @@ const SingleInvoiceInformation = (props) => {
 
   // zmiana statusu formularza
   const marksAsPaid = () => {
-    location.state.status === "Pending" &&
+    (location.state.status === "Pending" ||
+      location.state.status === "Draft") &&
       props.actionMarksAsPaid(location.state, location.state.id);
   };
+
+  // zmiana nazwy klasy przez zmianę statusu faktury
+  let statusClass;
+  if (location.state.status === "Paid") {
+    statusClass = "paid";
+  } else if (location.state.status === "Draft") {
+    statusClass = "draft";
+  } else {
+    statusClass = "pending";
+  }
 
   return (
     <>
@@ -79,13 +95,19 @@ const SingleInvoiceInformation = (props) => {
       />
       <div className="singleInvInfo-container">
         <div className="singleInvInfo-container__go-back">
-          <button>Go back</button>
+          <button onClick={handleClickGoBack}>
+            <img
+              src="../../../src/assets/icon-arrow-left.svg"
+              alt="arrow left"
+            />
+            Go back
+          </button>
         </div>
 
         <div className="singleInvInfo-container__statusAndButtons">
           <div className="singleInvInfo-container__statusAndButtons__status">
             <p>Status</p>
-            <span>Pending</span>
+            <span className={statusClass}>{location.state.status}</span>
           </div>
 
           <div className="singleInvInfo-container__statusAndButtons__buttons">
@@ -112,36 +134,55 @@ const SingleInvoiceInformation = (props) => {
 
         <div className="singleInvInfo-container__information">
           <div className="singleInvInfo-container__information--id-description">
-            <span className="id">{location.state.id}</span>
+            <span className="id">
+              <span>#</span>
+              {location.state.id}
+            </span>
             <span className="description">
               {location.state.billToProjectDescription}
             </span>
           </div>
           <div className="singleInvInfo-container__information--billFrom">
-            <span className="billFrom-address">19 Union Terrace</span>
-            <span className="billFrom-city">London</span>
-            <span className="billFrom-post-code">E1 3EZ</span>
-            <span className="billFrom-country">United Kingdom</span>
+            <span className="billFrom-address">
+              {location.state.billFromStreetAddress}
+            </span>
+            <span className="billFrom-city">{location.state.billFromCity}</span>
+            <span className="billFrom-post-code">
+              {location.state.billFromPostCode}
+            </span>
+            <span className="billFrom-country">
+              {location.state.billFromCountry}
+            </span>
           </div>
           <div className="singleInvInfo-container__information--date">
             <span className="invoice-date">Invoice Date</span>
-            <span className="date">21 Aug 2021</span>
+            <span className="date">{location.state.billToDate}</span>
           </div>
           <div className="singleInvInfo-container__information--billTo">
             <span className="billTo">Bill To</span>
-            <span className="billTo-name">Alex Grim</span>
-            <span className="billTo-address">84 Church Way</span>
-            <span className="billTo-city">Bradford</span>
-            <span className="billTo-post-code">BD19PB</span>
-            <span className="billTo-country">United Kingdom</span>
+            <span className="billTo-name">
+              {location.state.billToClientsName}
+            </span>
+            <span className="billTo-address">
+              {location.state.billToStreetAddress}
+            </span>
+            <span className="billTo-city">{location.state.billToCity}</span>
+            <span className="billTo-post-code">
+              {location.state.billToPostCode}
+            </span>
+            <span className="billTo-country">
+              {location.state.billToCountry}
+            </span>
           </div>
           <div className="singleInvInfo-container__information--payment">
             <span className="payment-due">Payment Due</span>
-            <span className="payment-date">20 Sep 2021</span>
+            <span className="payment-date">
+              {location.state.billToPaymentTerms}
+            </span>
           </div>
           <div className="singleInvInfo-container__information--email">
             <span className="sentTo">Sent to</span>
-            <span className="email">alexgrim@mail.com</span>
+            <span className="email">{location.state.billToClientsEmail}</span>
           </div>
 
           <div className="singleInvInfo-container__information__items">
@@ -151,31 +192,35 @@ const SingleInvoiceInformation = (props) => {
               <span>Price</span>
               <span>Total</span>
             </div>
-            <div className="singleInvInfo-container__information__items--item">
-              <div className="singleInvInfo-container__information__items--item__name-qty">
-                <span>Banner Design</span>
-                <div>
-                  <span>1x </span>
-                  <span>$ 156.00</span>
-                </div>
-              </div>
-              <span>$ 156.00</span>
-            </div>
 
-            <div className="singleInvInfo-container__information__items--item">
-              <div className="singleInvInfo-container__information__items--item__name-qty">
-                <span>Email Design</span>
-                <div>
-                  <span>2x </span>
-                  <span>$ 200.00</span>
+            {location.state.items?.map((item) => {
+              return (
+                <div
+                  key={item.itemID}
+                  className="singleInvInfo-container__information__items--item"
+                >
+                  <div className="singleInvInfo-container__information__items--item__name-qty">
+                    <span>{item.itemName}</span>
+                    <div>
+                      <span>{item.itemQty} x </span>
+                      <span>$ {item.itemPrice}</span>
+                    </div>
+                  </div>
+                  <span>$ {item.itemQty * item.itemPrice}</span>
                 </div>
-              </div>
-              <span>$ 400.00</span>
-            </div>
+              );
+            })}
 
             <div className="singleInvInfo-container__information__items--grandTotal">
               <span className="grandTotal--name">Grand Total</span>
-              <span className="grandTotal--sum">$ 556.00</span>
+              <span className="grandTotal--sum">
+                ${" "}
+                {location.state.items.length <= 1
+                  ? location.state.items.map((item) => item.itemTotal)
+                  : location.state.items.reduce((prev, curr) => {
+                      return prev.itemTotal + curr.itemTotal;
+                    })}
+              </span>
             </div>
           </div>
         </div>

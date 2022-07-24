@@ -103,13 +103,24 @@ const BillTo = (props) => {
       <div>
         <label htmlFor={`${ID}paymentTerms`}>Payment Terms</label>
         <br />
-        <input
+        {/*<input*/}
+        {/*  onChange={handleChangeValues}*/}
+        {/*  value={props.value.billToPaymentTerms}*/}
+        {/*  name="billToPaymentTerms"*/}
+        {/*  id={`${ID}paymentTerms`}*/}
+        {/*  type="text"*/}
+        {/*/>*/}
+        <select
           onChange={handleChangeValues}
           value={props.value.billToPaymentTerms}
           name="billToPaymentTerms"
           id={`${ID}paymentTerms`}
-          type="text"
-        />
+        >
+          <option value="Net 1 Days">Net 1 Days</option>
+          <option value="Net 7 Days">Net 7 Days</option>
+          <option value="Net 14 Days">Net 14 Days</option>
+          <option value="Net 30 Days">Net 30 Days</option>
+        </select>
       </div>
 
       <div>

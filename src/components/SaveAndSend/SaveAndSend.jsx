@@ -1,12 +1,18 @@
 /* eslint-disable */
-import React from "react";
+import React, { useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import actionSaveAndSend from "../../store/actions/actionSaveAndSend";
 import createInvoiceID from "../../utils/createInvoiceID";
 import actionToggleDisplay from "../../store/actions/actionToggleDisplay";
 const SaveAndSend = (props) => {
+  const [asDraft, setAsDraft] = useState(false);
+
   const dispatch = useDispatch();
+
+  const handleClickSaveAsDraft = () => {
+    setAsDraft((prevState) => !prevState);
+  };
 
   const handleClickSaveAndSend = () => {
     const ID = createInvoiceID();
@@ -14,8 +20,10 @@ const SaveAndSend = (props) => {
       props.dataValuesFromBillFrom,
       props.dataValuesFromBillTo,
       props.dataValuesSingleItemList,
-      ID
+      ID,
+      asDraft
     );
+    setAsDraft(false);
   };
 
   const handleDisplayForm = () => {
@@ -28,6 +36,7 @@ const SaveAndSend = (props) => {
     dispatch({
       type: "ADD_ITEM_CLEAR",
     });
+    setAsDraft(false);
   };
 
   const TEST = () => {
@@ -51,7 +60,14 @@ const SaveAndSend = (props) => {
       >
         Discard
       </button>
-      <button className="saveAndSend-container__btn--saveAsDraft">
+      <button
+        onClick={handleClickSaveAsDraft}
+        className={
+          asDraft
+            ? "saveAndSend-container__btn--saveAsDraft checked"
+            : "saveAndSend-container__btn--saveAsDraft"
+        }
+      >
         Save as Draft
       </button>
       <button

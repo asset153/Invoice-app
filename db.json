@@ -1,3 +1,58 @@
 {
-  "invoices": []
+  "invoices": [
+    {
+      "id": "YL5240",
+      "billFromStreetAddress": "",
+      "billFromCity": "",
+      "billFromPostCode": "",
+      "billFromCountry": "",
+      "billToClientsName": "",
+      "billToClientsEmail": "",
+      "billToStreetAddress": "",
+      "billToCity": "",
+      "billToPostCode": "",
+      "billToCountry": "",
+      "billToDate": "",
+      "billToPaymentTerms": "",
+      "billToProjectDescription": "",
+      "items": [],
+      "status": "Pending"
+    },
+    {
+      "id": "RT7247",
+      "billFromStreetAddress": "",
+      "billFromCity": "",
+      "billFromPostCode": "",
+      "billFromCountry": "",
+      "billToClientsName": "",
+      "billToClientsEmail": "",
+      "billToStreetAddress": "",
+      "billToCity": "",
+      "billToPostCode": "",
+      "billToCountry": "",
+      "billToDate": "",
+      "billToPaymentTerms": "",
+      "billToProjectDescription": "",
+      "items": [],
+      "status": "Draft"
+    },
+    {
+      "id": "CE3142",
+      "billFromStreetAddress": "",
+      "billFromCity": "",
+      "billFromPostCode": "",
+      "billFromCountry": "",
+      "billToClientsName": "",
+      "billToClientsEmail": "",
+      "billToStreetAddress": "",
+      "billToCity": "",
+      "billToPostCode": "",
+      "billToCountry": "",
+      "billToDate": "",
+      "billToPaymentTerms": "",
+      "billToProjectDescription": "",
+      "items": [],
+      "status": "Paid"
+    }
+  ]
 }

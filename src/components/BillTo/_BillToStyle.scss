@@ -55,7 +55,8 @@ fieldset.fieldset--billTo {
     &:nth-of-type(9) {
       grid-area: description;
     }
-    > input {
+    > input,
+    select {
       width: 100%;
       @extend %form-inputs;
     }

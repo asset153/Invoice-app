@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+/* eslint-disable */
+
+import React, { useState, useId } from "react";
 import { connect, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import InvoicesList from "../InvoicesList/InvoicesList";
 
 const InvoicePanel = () => {
   const [showFilterCloud, setShowFilterCloud] = useState(false);
+  const [filterInvoice, setFilterInvoice] = useState({
+    draft: false,
+    pending: false,
+    paid: false,
+  });
   const dispatch = useDispatch();
+  const ID = useId();
 
   const handleClickShowFilterCloud = () => {
     setShowFilterCloud((prevState) => !prevState);
@@ -16,6 +24,19 @@ const InvoicePanel = () => {
       type: "TOGGLE_DISPLAY",
     });
   };
+
+  // funkcja odpowiedzialna za filtrowanie faktur i nadawanie im display none lub visible...
+  const handleChangeFilterInvoiceStatus = (e) => {
+    // console.log(e.target.checked);
+    setFilterInvoice((prevState) => {
+      return {
+        ...prevState,
+        [e.target.name]: e.target.checked,
+      };
+    });
+  };
+
+  // console.log(filterInvoice);
 
   return (
     <main className="invoicePanel--container">
@@ -46,15 +67,33 @@ const InvoicePanel = () => {
             }}
           >
             <div>
-              <input id="draft" type="checkbox" />
+              <input
+                id={`${ID}draft`}
+                type="checkbox"
+                name="draft"
+                onChange={handleChangeFilterInvoiceStatus}
+                value="draft"
+              />
               <label htmlFor="draft">Draft</label>
             </div>
             <div>
-              <input id="pending" type="checkbox" />
+              <input
+                id={`${ID}pending`}
+                onChange={handleChangeFilterInvoiceStatus}
+                value="pending"
+                name="pending"
+                type="checkbox"
+              />
               <label htmlFor="pending">Pending</label>
             </div>
             <div>
-              <input id="paid" type="checkbox" />
+              <input
+                id={`${ID}paid`}
+                onChange={handleChangeFilterInvoiceStatus}
+                value="paid"
+                name="paid"
+                type="checkbox"
+              />
               <label htmlFor="paid">Paid</label>
             </div>
           </div>
@@ -63,7 +102,7 @@ const InvoicePanel = () => {
         <button onClick={handleClickShowForm}>New</button>
       </div>
       <div className="invoicePanel--container__bottom">
-        <InvoicesList />
+        <InvoicesList filterInvoice={filterInvoice} />
       </div>
     </main>
   );

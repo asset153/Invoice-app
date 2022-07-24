@@ -5,6 +5,7 @@
 div.singleInvInfo-container {
   background-color: $background-main;
   margin: 0 2rem;
+  margin-bottom: 100px;
   @include tablet() {
     width: 690px;
     margin: 0 auto;
@@ -18,10 +19,19 @@ div.singleInvInfo-container {
   > div.singleInvInfo-container__go-back {
     background-color: darkgrey;
     padding: 2rem 0;
+
+    > button {
+      @extend %normalize-buttons;
+      font-weight: bold;
+
+      > img {
+        margin-right: 1rem;
+      }
+    }
   }
 
   > div.singleInvInfo-container__statusAndButtons {
-    background-color: beige;
+    background-color: indianred;
     @include tablet() {
       display: flex;
       justify-content: space-between;
@@ -50,13 +60,30 @@ div.singleInvInfo-container {
       }
 
       > span {
-        @extend %status-span;
-        background-color: yellowgreen;
+        @extend %status;
+        &.pending {
+          @extend %status-pending;
+          &::before {
+            @extend %status-dot-pending;
+          }
+        }
+        &.paid {
+          @extend %status-paid;
+          &::before {
+            @extend %status-dot-paid;
+          }
+        }
+        &.draft {
+          @extend %status-draft;
+          &::before {
+            @extend %status-dot-draft;
+          }
+        }
       }
     }
 
     > div.singleInvInfo-container__statusAndButtons__buttons {
-      background-color: wheat;
+      background-color: indianred;
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -133,6 +160,10 @@ div.singleInvInfo-container {
 
       > span.id {
         font-weight: bold;
+
+        > span {
+          @extend %id-hashtag;
+        }
       }
     }
 

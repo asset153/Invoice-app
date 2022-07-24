@@ -35,6 +35,40 @@ const InvoicesList = (props) => {
   } else {
     {
       return invoicesData.map((singleDataForInvoice) => {
+        // console.log(props.filterInvoice);
+        // console.log("singleDataForInvoice", singleDataForInvoice);
+        // if (
+        //   props.filterInvoice.draft &&
+        //   singleDataForInvoice.status === "Draft"
+        // ) {
+        //   console.log(true);
+        //   return (
+        //     <SingleInvoice
+        //       key={singleDataForInvoice.id}
+        //       singleDataForInvoice={singleDataForInvoice}
+        //     />
+        //   );
+        // } else if (
+        //   props.filterInvoice.paid &&
+        //   singleDataForInvoice.status === "Paid"
+        // ) {
+        //   return (
+        //     <SingleInvoice
+        //       key={singleDataForInvoice.id}
+        //       singleDataForInvoice={singleDataForInvoice}
+        //     />
+        //   );
+        // } else if (
+        //   props.filterInvoice.pending &&
+        //   singleDataForInvoice.status === "Pending"
+        // ) {
+        //   return (
+        //     <SingleInvoice
+        //       key={singleDataForInvoice.id}
+        //       singleDataForInvoice={singleDataForInvoice}
+        //     />
+        //   );
+        // }
         return (
           <SingleInvoice
             key={singleDataForInvoice.id}

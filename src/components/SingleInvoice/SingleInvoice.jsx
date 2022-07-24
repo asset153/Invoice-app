@@ -3,7 +3,16 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const SingleInvoice = (props) => {
-  console.log(props.singleDataForInvoice);
+  // zmiana nazwy klasy przez zmianę statusu faktury
+  let statusClass;
+  if (props.singleDataForInvoice.status === "Paid") {
+    statusClass = "singleInvoice--container__spanType spanType--status paid";
+  } else if (props.singleDataForInvoice.status === "Draft") {
+    statusClass = "singleInvoice--container__spanType spanType--status draft";
+  } else {
+    statusClass = "singleInvoice--container__spanType spanType--status pending";
+  }
+
   return (
     <>
       <Link
@@ -26,7 +35,7 @@ const SingleInvoice = (props) => {
               $ 1.800.90
             </span>
           </div>
-          <span className="singleInvoice--container__spanType spanType--status">
+          <span className={statusClass}>
             {props.singleDataForInvoice.status}
           </span>
         </div>
