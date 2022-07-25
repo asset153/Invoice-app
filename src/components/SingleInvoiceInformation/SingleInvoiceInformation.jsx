@@ -1,8 +1,9 @@
 /* eslint-disable */
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
 import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 import actionDeleteInvoice from "../../store/actions/actionDeleteInvoice";
 import actionToggleDisplay from "../../store/actions/actionToggleDisplay";
 import actionMarksAsPaid from "../../store/actions/actionMarksAsPaid";
@@ -14,6 +15,8 @@ const SingleInvoiceInformation = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [deletePopup, setDeletePopup] = useState(false);
+
   const handleClickGoBack = () => {
     // przejdź do strony głównej
     navigate("/");
@@ -21,9 +24,12 @@ const SingleInvoiceInformation = (props) => {
 
   const deleteInvoice = () => {
     // przejdź do strony głównej
-    navigate("/");
+    // navigate("/");
     // usuń fakturę
-    props.actionDeleteInvoice(location.state.id);
+    // props.actionDeleteInvoice(location.state.id);
+
+    //otwórz popup
+    setDeletePopup(true);
   };
 
   const editInvoice = () => {
@@ -79,10 +85,37 @@ const SingleInvoiceInformation = (props) => {
     props.actionMarksAsPaid(location.state, location.state.id);
   };
 
+  // stworzenie resize pdf
   const makePDF = () => {
-    const doc = new jsPDF();
+    html2canvas(document.getElementById("information")).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const doc = new jsPDF();
 
-    console.log(doc);
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
+
+      const widthRatio = pageWidth / canvas.width;
+      const heightRatio = pageHeight / canvas.height;
+      const ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
+
+      const canvasWidth = canvas.width * ratio;
+      const canvasHeight = canvas.height * ratio;
+
+      const marginX = (pageWidth - canvasWidth) / 2;
+      const marginY = (pageHeight - canvasHeight) / 2;
+
+      doc.addImage(imgData, "PNG", marginX, marginY, canvasWidth, canvasHeight);
+
+      window.open(doc.output("bloburl"), "_blank");
+    });
+  };
+
+  const cancelPopupDelete = () => setDeletePopup(false);
+  const deleteInvoicePopup = () => {
+    // przejdź do strony głównej
+    navigate("/");
+    // usuń fakturę
+    props.actionDeleteInvoice(location.state.id);
   };
 
   // zmiana nazwy klasy przez zmianę statusu faktury
@@ -102,6 +135,25 @@ const SingleInvoiceInformation = (props) => {
         items={location.state.items}
       />
       <div className="singleInvInfo-container">
+        <div
+          style={{
+            display: deletePopup && "grid",
+          }}
+          className="singleInvInfo-container__popup"
+        >
+          <div className="singleInvInfo-container__popup__context">
+            <h4>Confirm Deletion</h4>
+            <p>
+              Are you sure you want to delete invoice #{location.state.id}? This
+              action cannot be undone.
+            </p>
+            <div className="singleInvInfo-container__popup__context__buttons">
+              <button onClick={cancelPopupDelete}>Cancel</button>
+              <button onClick={deleteInvoicePopup}>Delete</button>
+            </div>
+          </div>
+        </div>
+
         <div className="singleInvInfo-container__go-back">
           <button onClick={handleClickGoBack}>
             <img
@@ -146,7 +198,7 @@ const SingleInvoiceInformation = (props) => {
           </div>
         </div>
 
-        <div className="singleInvInfo-container__information">
+        <div id="information" className="singleInvInfo-container__information">
           <div className="singleInvInfo-container__information--id-description">
             <span className="id">
               <span>#</span>

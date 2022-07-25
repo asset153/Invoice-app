@@ -16,6 +16,65 @@ div.singleInvInfo-container {
     min-width: 730px;
   }
 
+  > div.singleInvInfo-container__popup {
+    display: none;
+    place-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    > div.singleInvInfo-container__popup__context {
+      width: 33rem;
+      height: 22rem;
+      padding: 3rem;
+      border-radius: 1rem;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      @include tablet() {
+        width: 48rem;
+        height: 25rem;
+        padding: 3rem 4rem;
+      }
+
+      > h4 {
+        font-size: 2rem;
+
+        @include tablet() {
+          font-size: 2.4rem;
+        }
+      }
+
+      > p {
+        font-size: 1.2rem;
+        color: #888eb0;
+        line-height: 1.5;
+        margin: 2rem 0;
+      }
+
+      > div.singleInvInfo-container__popup__context__buttons {
+        align-self: flex-end;
+        > button {
+          @extend %normalize-buttons;
+          &:nth-of-type(1) {
+            @extend %buttons-edit;
+          }
+
+          &:nth-of-type(2) {
+            @extend %buttons-delete;
+            margin-left: 1rem;
+          }
+        }
+      }
+    }
+  }
+
   > div.singleInvInfo-container__go-back {
     //background-color: darkgrey;
     padding: 2rem 0;
@@ -100,10 +159,11 @@ div.singleInvInfo-container {
       }
 
       > button {
-        border: none;
-        border-radius: 2rem;
-        font-weight: bold;
-        font-family: $font-spartan;
+        //border: none;
+        //border-radius: 2rem;
+        @extend %normalize-buttons;
+        //font-weight: bold;
+        //font-family: $font-spartan;
 
         &.singleInvInfo-container__statusAndButtons__buttons--makePDF {
           padding: 1.7rem 1rem;
@@ -116,18 +176,20 @@ div.singleInvInfo-container {
         }
 
         &.singleInvInfo-container__statusAndButtons__buttons--delete {
-          padding: 1.7rem 2rem;
-          background-color: #ec5757;
-          color: #fff;
+          //padding: 1.7rem 2rem;
+          //background-color: #ec5757;
+          //color: #fff;
+          @extend %buttons-delete;
           @include tablet() {
             margin: 0 1rem;
           }
         }
 
         &.singleInvInfo-container__statusAndButtons__buttons--edit {
-          padding: 1.7rem 2rem;
-          background-color: #dcdeee;
-          color: #7e88c3;
+          //padding: 1.7rem 2rem;
+          //background-color: #dcdeee;
+          //color: #7e88c3;
+          @extend %buttons-edit;
         }
 
         &.singleInvInfo-container__statusAndButtons__buttons--marksAsPaid {
@@ -263,12 +325,12 @@ div.singleInvInfo-container {
             flex-direction: row;
             justify-content: space-between;
             width: 70%;
-            background-color: red;
+            //background-color: red;
           }
 
           > div {
             @include tablet() {
-              background-color: blue;
+              //background-color: blue;
               display: flex;
               justify-content: space-between;
               width: 50%;
@@ -288,12 +350,13 @@ div.singleInvInfo-container {
 
       > div.singleInvInfo-container__information__items--grandTotal {
         border-radius: 0 0 0.75rem 0.75rem;
-        background-color: rebeccapurple;
+        background-color: #373b53;
         min-height: 8rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 0 2rem;
+        color: #fff;
 
         > span.grandTotal--sum {
           font-size: 2rem;

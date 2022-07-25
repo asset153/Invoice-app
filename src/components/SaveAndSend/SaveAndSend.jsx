@@ -24,6 +24,15 @@ const SaveAndSend = (props) => {
       asDraft
     );
     setAsDraft(false);
+    dispatch({
+      type: "TOGGLE_DISPLAY",
+    });
+    dispatch({
+      type: "CREATE_OBJ_FROM_VALUE_CLEAR",
+    });
+    dispatch({
+      type: "ADD_ITEM_CLEAR",
+    });
   };
 
   const handleDisplayForm = () => {

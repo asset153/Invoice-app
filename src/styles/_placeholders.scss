@@ -1,3 +1,5 @@
+@import "./variables";
+
 %id-hashtag {
   color: #7e88c3;
 }
@@ -66,4 +68,19 @@
 
 %normalize-buttons {
   border: none;
+  border-radius: 2rem;
+  font-weight: bold;
+  font-family: $font-spartan;
+}
+
+%buttons-delete {
+  padding: 1.7rem 2rem;
+  background-color: #ec5757;
+  color: #fff;
+}
+
+%buttons-edit {
+  padding: 1.7rem 2rem;
+  background-color: #edeef6;
+  color: #7e88c3;
 }
