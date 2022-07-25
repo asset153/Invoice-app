@@ -58,6 +58,7 @@
         border-radius: 1rem;
         padding: 2rem 6rem 2rem 2rem;
         background-color: #fff;
+        box-shadow: 4px 4px 16px 0 rgba(124, 93, 250, 0.25);
 
         @include tablet() {
           left: -50%;
@@ -112,7 +113,6 @@
   }
 
   > .invoicePanel--container__bottom {
-    //background-color: beige;
     min-height: 60rem;
     margin-top: 5rem;
 

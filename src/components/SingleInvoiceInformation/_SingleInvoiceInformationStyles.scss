@@ -17,12 +17,13 @@ div.singleInvInfo-container {
   }
 
   > div.singleInvInfo-container__go-back {
-    background-color: darkgrey;
+    //background-color: darkgrey;
     padding: 2rem 0;
 
     > button {
       @extend %normalize-buttons;
       font-weight: bold;
+      background-color: transparent;
 
       > img {
         margin-right: 1rem;
@@ -31,7 +32,8 @@ div.singleInvInfo-container {
   }
 
   > div.singleInvInfo-container__statusAndButtons {
-    background-color: indianred;
+    //background-color: indianred;
+    background-color: #fff;
     @include tablet() {
       display: flex;
       justify-content: space-between;
@@ -41,7 +43,7 @@ div.singleInvInfo-container {
 
     > div.singleInvInfo-container__statusAndButtons__status {
       font-size: 1.2rem;
-      background-color: whitesmoke;
+      //background-color: whitesmoke;
       height: 9rem;
       display: flex;
       justify-content: space-between;
@@ -53,7 +55,7 @@ div.singleInvInfo-container {
       }
 
       > p {
-        background-color: red;
+        //background-color: red;
         @include tablet() {
           margin-right: 1rem;
         }
@@ -83,7 +85,8 @@ div.singleInvInfo-container {
     }
 
     > div.singleInvInfo-container__statusAndButtons__buttons {
-      background-color: indianred;
+      background-color: #fff;
+      //background-color: indianred;
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -102,6 +105,16 @@ div.singleInvInfo-container {
         font-weight: bold;
         font-family: $font-spartan;
 
+        &.singleInvInfo-container__statusAndButtons__buttons--makePDF {
+          padding: 1.7rem 1rem;
+          background-color: #252945;
+          color: white;
+
+          @include tablet() {
+            margin-right: 6rem;
+          }
+        }
+
         &.singleInvInfo-container__statusAndButtons__buttons--delete {
           padding: 1.7rem 2rem;
           background-color: #ec5757;
@@ -113,7 +126,7 @@ div.singleInvInfo-container {
 
         &.singleInvInfo-container__statusAndButtons__buttons--edit {
           padding: 1.7rem 2rem;
-          background-color: #f9fafe;
+          background-color: #dcdeee;
           color: #7e88c3;
         }
 
@@ -127,7 +140,8 @@ div.singleInvInfo-container {
   }
 
   div.singleInvInfo-container__information {
-    background-color: orange;
+    background-color: #fff;
+    //background-color: orange;
     display: grid;
     grid-template-areas:
       "id ."
@@ -156,7 +170,7 @@ div.singleInvInfo-container {
 
     > div.singleInvInfo-container__information--id-description {
       grid-area: id;
-      background-color: yellow;
+      //background-color: yellow;
 
       > span.id {
         font-weight: bold;
@@ -169,7 +183,7 @@ div.singleInvInfo-container {
 
     > div.singleInvInfo-container__information--billFrom {
       grid-area: billFrom;
-      background-color: yellowgreen;
+      //background-color: yellowgreen;
       @include tablet() {
         align-items: flex-end;
       }
@@ -177,7 +191,7 @@ div.singleInvInfo-container {
 
     > div.singleInvInfo-container__information--date {
       grid-area: date;
-      background-color: mediumpurple;
+      //background-color: mediumpurple;
 
       > span.date {
         font-size: 1.5rem;
@@ -187,7 +201,7 @@ div.singleInvInfo-container {
 
     > div.singleInvInfo-container__information--billTo {
       grid-area: billTo;
-      background-color: gold;
+      //background-color: gold;
 
       > span.billTo-name {
         font-weight: bold;
@@ -197,7 +211,7 @@ div.singleInvInfo-container {
 
     > div.singleInvInfo-container__information--payment {
       grid-area: payment;
-      background-color: palevioletred;
+      //background-color: palevioletred;
 
       > span.payment-date {
         font-size: 1.5rem;
@@ -207,7 +221,7 @@ div.singleInvInfo-container {
 
     > div.singleInvInfo-container__information--email {
       grid-area: email;
-      background-color: rosybrown;
+      //background-color: rosybrown;
 
       > span.email {
         font-size: 1.5rem;
@@ -220,7 +234,7 @@ div.singleInvInfo-container {
       display: flex;
       justify-content: space-between;
       grid-area: items;
-      background-color: green;
+      //background-color: green;
       border-radius: 0.75rem;
       margin: 2rem;
       padding-top: 3rem;
@@ -235,7 +249,7 @@ div.singleInvInfo-container {
       }
 
       > div.singleInvInfo-container__information__items--item {
-        background-color: indianred;
+        //background-color: indianred;
         display: flex;
         justify-content: space-between;
         align-items: center;

@@ -2,22 +2,59 @@
 @import "../src/styles/_placeholders.scss";
 
 .formEdit-container {
-  z-index: 999;
-  overflow-y: scroll;
+  //z-index: 999;
+  //width: 100%;
+  //height: calc(100vh - 7rem);
+  //top: 7rem;
+  //left: 0;
+  //position: absolute;
+  //background-color: beige;
+  //@include tablet() {
+  //  width: 620px;
+  //  height: calc(100vh - 8rem);
+  //  top: 8rem;
+  //}
+  //@include desktop() {
+  //  height: 100vh;
+  //  top: 0;
+  //  left: 100px;
+  //}
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
-  height: calc(100vh - 7rem);
+  min-height: calc(100vh - 7rem);
+  height: auto;
   top: 7rem;
   left: 0;
   position: absolute;
-  background-color: beige;
+  background-color: #fff;
+  z-index: 999;
+
   @include tablet() {
     width: 620px;
-    height: calc(100vh - 8rem);
+    min-height: calc(100vh - 8rem);
     top: 8rem;
+
+    &::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 620px;
+      right: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
   }
   @include desktop() {
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     top: 0;
     left: 100px;
+
+    &::before {
+      left: 720px;
+    }
   }
 }

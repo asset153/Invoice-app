@@ -1,0 +1,22 @@
+div.invoiceList--container {
+  display: grid;
+  place-items: center;
+
+  img.invoiceList--container__image {
+  }
+
+  > h3 {
+    margin: 2rem 0;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  > p {
+    color: #888eb0;
+    font-size: 1.2rem;
+    text-align: center;
+    > span {
+      font-weight: bold;
+    }
+  }
+}

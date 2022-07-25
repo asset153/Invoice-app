@@ -13,19 +13,29 @@
   position: absolute;
   background-color: #fff;
   z-index: 999;
+
   @include tablet() {
     width: 620px;
     min-height: calc(100vh - 8rem);
     top: 8rem;
+
+    &::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 620px;
+      right: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
   }
   @include desktop() {
     min-height: 100vh;
     height: auto;
     top: 0;
     left: 100px;
-  }
-
-  @media screen and (max-height: 768px) {
-    overflow-y: scroll;
+    &::before {
+      left: 720px;
+    }
   }
 }

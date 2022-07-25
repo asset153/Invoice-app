@@ -32,49 +32,66 @@ const InvoicesList = (props) => {
         <h1>{error}</h1>
       </div>
     );
+  } else if (invoicesData.length <= 0) {
+    return (
+      <div className="invoiceList--container">
+        <img
+          className="invoiceList--container__image"
+          src="../../../src/assets/illustration-empty.svg"
+          alt="illustration empty"
+        />
+        <h3>There is nothing here</h3>
+        <p>
+          Create an invoice by clicking the <span>New Invoice button</span> and
+          get started
+        </p>
+      </div>
+    );
   } else {
     {
       return invoicesData.map((singleDataForInvoice) => {
-        // console.log(props.filterInvoice);
-        // console.log("singleDataForInvoice", singleDataForInvoice);
-        // if (
-        //   props.filterInvoice.draft &&
-        //   singleDataForInvoice.status === "Draft"
-        // ) {
-        //   console.log(true);
-        //   return (
-        //     <SingleInvoice
-        //       key={singleDataForInvoice.id}
-        //       singleDataForInvoice={singleDataForInvoice}
-        //     />
-        //   );
-        // } else if (
-        //   props.filterInvoice.paid &&
-        //   singleDataForInvoice.status === "Paid"
-        // ) {
-        //   return (
-        //     <SingleInvoice
-        //       key={singleDataForInvoice.id}
-        //       singleDataForInvoice={singleDataForInvoice}
-        //     />
-        //   );
-        // } else if (
-        //   props.filterInvoice.pending &&
-        //   singleDataForInvoice.status === "Pending"
-        // ) {
-        //   return (
-        //     <SingleInvoice
-        //       key={singleDataForInvoice.id}
-        //       singleDataForInvoice={singleDataForInvoice}
-        //     />
-        //   );
-        // }
-        return (
-          <SingleInvoice
-            key={singleDataForInvoice.id}
-            singleDataForInvoice={singleDataForInvoice}
-          />
-        );
+        if (
+          props.filterInvoice.pending &&
+          singleDataForInvoice.status === "Pending"
+        ) {
+          return (
+            <SingleInvoice
+              key={singleDataForInvoice.id}
+              singleDataForInvoice={singleDataForInvoice}
+            />
+          );
+        } else if (
+          props.filterInvoice.paid &&
+          singleDataForInvoice.status === "Paid"
+        ) {
+          return (
+            <SingleInvoice
+              key={singleDataForInvoice.id}
+              singleDataForInvoice={singleDataForInvoice}
+            />
+          );
+        } else if (
+          props.filterInvoice.draft &&
+          singleDataForInvoice.status === "Draft"
+        ) {
+          return (
+            <SingleInvoice
+              key={singleDataForInvoice.id}
+              singleDataForInvoice={singleDataForInvoice}
+            />
+          );
+        } else if (
+          !props.filterInvoice.pending &&
+          !props.filterInvoice.paid &&
+          !props.filterInvoice.draft
+        ) {
+          return (
+            <SingleInvoice
+              key={singleDataForInvoice.id}
+              singleDataForInvoice={singleDataForInvoice}
+            />
+          );
+        }
       });
     }
   }

@@ -2,6 +2,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
+import { jsPDF } from "jspdf";
 import actionDeleteInvoice from "../../store/actions/actionDeleteInvoice";
 import actionToggleDisplay from "../../store/actions/actionToggleDisplay";
 import actionMarksAsPaid from "../../store/actions/actionMarksAsPaid";
@@ -74,7 +75,14 @@ const SingleInvoiceInformation = (props) => {
   const marksAsPaid = () => {
     (location.state.status === "Pending" ||
       location.state.status === "Draft") &&
-      props.actionMarksAsPaid(location.state, location.state.id);
+      navigate("/");
+    props.actionMarksAsPaid(location.state, location.state.id);
+  };
+
+  const makePDF = () => {
+    const doc = new jsPDF();
+
+    console.log(doc);
   };
 
   // zmiana nazwy klasy przez zmianę statusu faktury
@@ -111,6 +119,12 @@ const SingleInvoiceInformation = (props) => {
           </div>
 
           <div className="singleInvInfo-container__statusAndButtons__buttons">
+            <button
+              className="singleInvInfo-container__statusAndButtons__buttons--makePDF"
+              onClick={makePDF}
+            >
+              MAKE PDF
+            </button>
             <button
               className="singleInvInfo-container__statusAndButtons__buttons--edit"
               onClick={editInvoice}

@@ -8,19 +8,22 @@ import BillFrom from "../BillFrom/BillFrom";
 import BillTo from "../BillTo/BillTo";
 import actionEditInvoice from "../../store/actions/actionEditInvoice";
 import actionToggleDisplay from "../../store/actions/actionToggleDisplay";
+import { useNavigate } from "react-router-dom";
 
 const FormEdit = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // przycisk edycji formularza, metoda PUT
   const saveChanges = () => {
-    console.log(props.dataValuesSingleItemList);
     props.actionEditInvoice(
       props.dataValuesFromBillFrom,
       props.dataValuesFromBillTo,
       props.dataValuesSingleItemList,
       props.singleInvoiceID
     );
+    navigate("/");
+    props.actionToggleDisplay();
   };
 
   // funkcja do zmiany display edit form
